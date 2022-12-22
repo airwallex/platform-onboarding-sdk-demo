@@ -1,0 +1,26 @@
+.DS_Store
+
+node_modules
+package-lock.json
+dist
+.vscode
+yarn-error.log
+
+.env
+.history
+.nyc_output
+
+
+# Jest coverage file
+coverage
+screenshots
+videos
+reports
+.idea
+
+# e2e ignore file
+Web-test/mochawesome-report
+
+# new relic fileUpload
+newrelic*.log
+.scannerwork

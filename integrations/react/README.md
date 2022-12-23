@@ -4,16 +4,14 @@ This is a demo web application to showcase the Airwallex Platform Onboarding SDK
 
 ## Development
 
-To install this project run
+To run this project locally,
 
+1. Install dependencies
 ```bash
   yarn
 ```
 
-To run this project locally,
-
-Replace the client details in `/src/index.tsx`
-
+2. Replace the client details in `/src/index.tsx`
 ```js
 configureClientApi({
   environment: 'demo',
@@ -22,6 +20,7 @@ configureClientApi({
 });
 ```
 
+3. Run the project in development mode with yarn start. Project running at [localhost:3333](localhost:3333)
 ```bash
   yarn start
 ```

@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@airwallex/scale-web@^0.0.12":
-  version "0.0.12"
-  resolved "https://npm.pkg.github.com/download/@airwallex/scale-web/0.0.12/c491cb48e6b1dea70e4772f4a1b4b67fdaec1599#c491cb48e6b1dea70e4772f4a1b4b67fdaec1599"
-  integrity sha512-1zQfr1fDrc1o0GQZ/DREdVYMvimERkGLX2Ruqi/HLgRe6WrLXTpYGrYmkJnPOB+/4EjBYR50O+wA4r2jnSR09g==
+"@airwallex/platform-onboarding-sdk@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@airwallex/platform-onboarding-sdk/-/platform-onboarding-sdk-0.0.1.tgz#be8272a7415842a0ad20026a070b5164b86ffb24"
+  integrity sha512-I4cJOtY9emwCQJEviltphJwLbpYG7raUXv3ZNmg8aptad2FWL9s5Rai3uaI6pN5uUUFnDshphh6htYAH+FcoQA==
   dependencies:
     "@babel/cli" "^7.19.3"
     "@babel/core" "^7.20.5"

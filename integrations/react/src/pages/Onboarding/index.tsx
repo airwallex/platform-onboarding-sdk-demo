@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { loadScript } from '@airwallex/scale-web';
-import type { Element, ElementType } from '@airwallex/scale-web';
-import Typography from '@mui/material/Typography';
-import Snackbar from '@mui/material/Snackbar';
 import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
+import { loadScript } from '@airwallex/platform-onboarding-sdk';
+import type { Element, ElementType } from '@airwallex/platform-onboarding-sdk';
 
-import { getAuthCode, clientConfig } from '../../utils/apiClient';
+import { getAuthCode, clientConfig, codeVerifier } from '../../utils/apiClient';
 
 type Handler = (event: any) => void;
 
@@ -55,32 +55,23 @@ const Onboarding: React.FC = () => {
     const fetchAuthCode = async () => {
       const authCode = await getAuthCode();
       try {
-        const p1 = performance.now();
         const sdk = await loadScript({ env: clientConfig.environment, version: 'v1' });
         await sdk.init({
-          env: clientConfig.environment,
           authCode,
+          codeVerifier,
+          env: clientConfig.environment,
           clientId: clientConfig.clientId,
-          codeVerifier: '123ABC',
         });
-        const p2 = performance.now();
-        console.log('init end: ', p2 - p1);
-        const p3 = performance.now();
+
         element = await sdk.createElement(ELEMENT_TYPE, {
           hideHeader: true,
           hideNav: true,
         });
-        const p4 = performance.now();
-        console.log('createElement end: ', p4 - p3);
-        const p5 = performance.now();
+
         await element?.mount('onboarding');
-        const p6 = performance.now();
-        console.log('mount end: ', p6 - p5);
-        const p7 = performance.now();
+
         element?.on('ready', (event: any) => {
           if (handleReady) {
-            const p8 = performance.now();
-            console.log('ready end: ', p8 - p7);
             handleReady(event);
           }
         });

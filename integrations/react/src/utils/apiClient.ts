@@ -13,6 +13,10 @@ export let clientConfig: ClientConfig = {
   environment: 'demo',
 };
 
+export const codeVerifier = '123ABC';
+const codeChallenge = 'aNggeDw6KT4422DzzGe1RUZC2DJ-cpLi3hM8b7YRFeE';
+const scope = 'w:awx_action:hosted_onboarding';
+
 const CLIENT_API_HOST: Record<'demo' | 'prod', string> = {
   demo: 'https://api-demo.airwallex.com/api/v1',
   prod: 'https://api.airwallex.com/api/v1',
@@ -52,8 +56,8 @@ export const login = async (): Promise<void> => {
 
 export const authorizeConnectedAccount = (accountId: string) =>
   clientApi.post(`/accounts/${accountId}/authorize`, {
-    scope: 'w:awx_action:hosted_onboarding',
-    code_challenge: 'aNggeDw6KT4422DzzGe1RUZC2DJ-cpLi3hM8b7YRFeE',
+    scope,
+    code_challenge: codeChallenge,
   });
 
 export const createBusinessAccount = async (): Promise<ResponseData> =>
@@ -61,8 +65,8 @@ export const createBusinessAccount = async (): Promise<ResponseData> =>
 
 export const authorize = async (): Promise<ResponseData> =>
   clientApi.post('/account/authorize', {
-    scope: 'w:awx_action:hosted_onboarding',
-    code_challenge: 'aNggeDw6KT4422DzzGe1RUZC2DJ-cpLi3hM8b7YRFeE',
+    scope,
+    code_challenge: codeChallenge,
   });
 
 export const getAuthCode = async (): Promise<string> => {
@@ -78,6 +82,5 @@ clientApi.interceptors.request.use((request) => {
       request.headers['Authorization'] = `Bearer ${clientApiKey}`;
     }
   }
-
   return request;
 });

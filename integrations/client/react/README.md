@@ -2,11 +2,6 @@
 
 This is a demo web application to showcase the Airwallex Platform Onboarding SDK with React.
 
-## Prepare service
-All the requests related to authorization should be implemented on server side.
-
-You don't need a service to run this demo project, however the authorization apis used in this project are only for demonstration.
-
 ## Run the project
 
 To run this project locally,

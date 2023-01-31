@@ -1,4 +1,4 @@
-# AIRWALLEX Platform Onboarding SDK
+# Airwallex Platform Onboarding SDK
 
 This is a demo web application to showcase the Airwallex Platform Onboarding SDK with React.
 
@@ -11,7 +11,7 @@ To run this project locally,
   yarn
 ```
 
-2. Run the project in development mode with yarn start. Project running at [localhost:3333](localhost:3333)
+2. Run the project in development mode with yarn start. Project running at [localhost:3333](http://localhost:3333)
 ```bash
   yarn start
 ```

@@ -1,4 +1,4 @@
-# AIRWALLEX Platform Onboarding SDK Server
+# Airwallex Platform Onboarding SDK Server
 
 This is a demo server for Airwallex Platform Onboarding SDK.
 
@@ -11,7 +11,7 @@ To run this project locally,
   yarn
 ```
 
-2. Run the project with yarn start. Project running at [localhost:3000](localhost:3000)
+2. Run the project with yarn start. Project running at [localhost:3000](http://localhost:3000)
 ```bash
   yarn start
 ```

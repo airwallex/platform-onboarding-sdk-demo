@@ -6,7 +6,6 @@ dist
 .vscode
 yarn-error.log
 
-.env
 .history
 .nyc_output
 

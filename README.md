@@ -6,7 +6,7 @@ Also, check out [the demo site for `@airwallex/platform-onboarding-sdk`](https:/
 
 ## 1. Create .env in root directory
 ```env
-API_ENV=staging/demo/prod
+API_ENV=staging | demo | prod
 CLIENT_ID=your-client-id
 CLIENT_API_KEY=your-api-key
 ```

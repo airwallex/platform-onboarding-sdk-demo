@@ -1,6 +1,16 @@
 
 import axios from 'axios';
 import { generateAccountData } from '../utils';
+import * as dotenv from 'dotenv';
+
+dotenv.config({ path: '../../../.env' });
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      API_ENV: 'staging' | 'demo' | 'prod'
+    }
+  }
+}
 
 const CLIENT_API_HOST = {
   staging: 'https://api-staging.airwallex.com/api/v1',
@@ -9,7 +19,7 @@ const CLIENT_API_HOST = {
 };
 
 const clientApi: any = axios.create({
-  baseURL: CLIENT_API_HOST.staging,
+  baseURL: CLIENT_API_HOST[process.env.API_ENV],
   headers: {
     'Content-Type': 'application/json',
   },

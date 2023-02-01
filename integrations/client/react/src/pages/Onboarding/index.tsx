@@ -4,10 +4,11 @@ import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
-import { loadScript } from '@airwallex/platform-onboarding-sdk';
+import { init, createElement, AirwallexEnv } from '@airwallex/platform-onboarding-sdk';
 import type { Element, ElementType } from '@airwallex/platform-onboarding-sdk';
 
-import { getAuthCode, clientConfig, codeVerifier } from '../../utils/apiClient';
+import { getAuthCode } from '../../utils/apiClient';
+import { generateCodeVerifier, generateCodeChallengeFromVerifier } from '../../utils';
 
 type Handler = (event: any) => void;
 
@@ -53,23 +54,28 @@ const Onboarding: React.FC = () => {
   useEffect(() => {
     let element: Element | null;
     const fetchAuthCode = async () => {
-      const authCode = await getAuthCode();
+      const codeVerifier = generateCodeVerifier();
+      const codeChallenge = await generateCodeChallengeFromVerifier(codeVerifier);
+      const authCode = await getAuthCode(codeChallenge);
       try {
-        const sdk = await loadScript({ env: clientConfig.environment, version: 'v1' });
-        await sdk.init({
+        // initialize AirwallexOnboarding instance on window
+        await init({
           authCode,
           codeVerifier,
-          env: clientConfig.environment,
-          clientId: clientConfig.clientId,
+          env: process.env.API_ENV as AirwallexEnv,
+          clientId: process.env.CLIENT_ID as string,
         });
 
-        element = await sdk.createElement(ELEMENT_TYPE, {
+        // create onboarding element
+        element = createElement(ELEMENT_TYPE, {
           hideHeader: true,
           hideNav: true,
         });
 
+        // append to DOM
         await element?.mount('onboarding');
 
+        // subscribe element events
         element?.on('ready', (event: any) => {
           if (handleReady) {
             handleReady(event);

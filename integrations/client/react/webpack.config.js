@@ -1,5 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
 
 module.exports = {
   entry: './src/index.tsx',
@@ -14,7 +17,16 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-  devServer: { static: path.join(__dirname, 'src'), historyApiFallback: true, compress: false, hot: true, port: 3333 },
+  devServer: {
+    static: path.join(__dirname, 'src'),
+    historyApiFallback: true,
+    compress: false,
+    hot: true,
+    port: 3333,
+    proxy: {
+      '/demo': 'http://localhost:3000',
+    },
+  },
   module: {
     rules: [
       {
@@ -40,6 +52,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
+    }),
+    new webpack.DefinePlugin({
+      'process.env.API_ENV': JSON.stringify(process.env.API_ENV),
+      'process.env.CLIENT_ID': JSON.stringify(process.env.CLIENT_ID),
     }),
   ],
 };

@@ -1,13 +1,12 @@
 export const generateAccountData = (): Record<string, unknown> => {
   return {
     primary_contact:{
-        email: 'onboarding-sdk-sample-account@email.com '
+        email: 'onboarding-sdk-sample-account@email.com'
     },
     account_details:{
       business_details: {
         address: {
           country_code: 'AU',
-          state: 'NSW',
         },
       },
     },

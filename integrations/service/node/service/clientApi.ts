@@ -32,6 +32,9 @@ export const login = async (requestBody: Record<string, any>, configs: Record<st
   return token;
 };
 
+/**
+ * Please refer to the api document for more details when creating new account: https://www.airwallex.com/docs/api#/Scale/Accounts/_api_v1_accounts_create/post
+*/
 export const createBusinessAccount = async (configs: Record<string, any>) => {
   const { data: { id } } = await clientApi.post('/accounts/create', generateAccountData(), configs);
   return id;

@@ -58,6 +58,7 @@ const Onboarding: React.FC = () => {
       const codeChallenge = await generateCodeChallengeFromVerifier(codeVerifier);
       const authCode = await getAuthCode(codeChallenge);
       try {
+        // initialize AirwallexOnboarding instance on window
         await init({
           authCode,
           codeVerifier,
@@ -65,13 +66,16 @@ const Onboarding: React.FC = () => {
           clientId: process.env.CLIENT_ID as string,
         });
 
+        // create onboarding element
         element = createElement(ELEMENT_TYPE, {
           hideHeader: true,
           hideNav: true,
         });
 
+        // append to DOM
         await element?.mount('onboarding');
 
+        // subscribe element events
         element?.on('ready', (event: any) => {
           if (handleReady) {
             handleReady(event);

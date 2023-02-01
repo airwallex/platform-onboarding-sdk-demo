@@ -3,8 +3,5 @@
   "version": "1.0.0",
   "main": "index.ts",
   "repository": "https://gitlab.awx.im/kian.zhu/scale-web-sdk-demo.git",
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^16.0.3"
-  }
+  "license": "MIT"
 }

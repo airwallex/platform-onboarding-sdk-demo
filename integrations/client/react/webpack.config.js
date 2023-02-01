@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-require('dotenv').config({ path: '../../../.env' });
+require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
 
 module.exports = {
   entry: './src/index.tsx',

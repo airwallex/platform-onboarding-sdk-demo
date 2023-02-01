@@ -1,9 +1,11 @@
-
 import axios from 'axios';
 import { generateAccountData } from '../utils';
+
+import * as path from 'path';
 import * as dotenv from 'dotenv';
 
-dotenv.config({ path: '../../../.env' });
+dotenv.config({ path: path.resolve('../../../.env') });
+
 declare global {
   namespace NodeJS {
     interface ProcessEnv {

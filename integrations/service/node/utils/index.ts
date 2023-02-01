@@ -1,8 +1,7 @@
 export const generateAccountData = (): Record<string, unknown> => {
-  const randomEmail = `onboarding-sdk@email.com`;
   return {
     primary_contact:{
-        email: randomEmail
+        email: 'onboarding-sdk-sample-account@email.com '
     },
     account_details:{
       business_details: {

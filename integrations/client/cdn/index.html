@@ -1,0 +1,55 @@
+<!-- Airwallex Onboarding SDK Demo - Static HTML. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airwallex Onboarding SDK Demo</title>
+  <script src="https://static-staging.airwallex.com/widgets/sdk/onboarding/v1/index.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="onboarding"></div>
+  <script>
+    var ELEMENT_TYPE = 'kyc';
+
+    try {
+      (async function() {
+        await window.AirwallexOnboarding.init({
+          env: 'staging',
+          clientId: 'your_client_id',
+          authCode: '', // Please find details of authCode here: https://www.airwallex.com/docs/api#/Scale/Embedded_Components/Intro
+          codeVerifier: '',
+        });
+
+        var element = window.AirwallexOnboarding.createElement(ELEMENT_TYPE, {
+          hideHeader: true,
+          hideNav: true,
+        });
+
+        if (element) {
+          element.mount('onboarding');
+
+          // subscribe element events
+          element?.on('ready', function (event) {
+            console.log('element ready');
+          });
+          element?.on('cancel', function (event) {
+            console.log('on cancel');
+          });
+          element?.on('success', function (event) {
+            console.log('kyc success');
+          });
+          element?.on('error', function (event) {
+            console.error('on error', event);
+          });
+      }
+      })();
+
+    } catch (error) {
+      console.error(error);
+    }
+  </script>
+</body>
+</html>

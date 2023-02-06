@@ -1,0 +1,10 @@
+/**
+ * style.css
+ * Airwallex Onboarding SDK Demo - Static HTML.
+ *
+ * This file provides styling to the demo site.  This is not required for the integration.
+ */
+
+#onboarding {
+  height: 100vh;
+}

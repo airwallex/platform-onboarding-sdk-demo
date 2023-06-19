@@ -4,15 +4,15 @@ import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
-import { init, createElement, AirwallexEnv } from '@airwallex/platform-onboarding-sdk';
-import type { Element, ElementType } from '@airwallex/platform-onboarding-sdk';
+import { init, createElement } from '@airwallex/components-sdk';
+import type { Element } from '@airwallex/components-sdk';
 
 import { getAuthCode } from '../../utils/apiClient';
 import { generateCodeVerifier, generateCodeChallengeFromVerifier } from '../../utils';
 
 type Handler = (event: any) => void;
 
-const ELEMENT_TYPE: ElementType = 'kyc';
+const ELEMENT_TYPE = 'kyc';
 
 const Onboarding: React.FC = () => {
   const history = useHistory();
@@ -62,12 +62,13 @@ const Onboarding: React.FC = () => {
         await init({
           authCode,
           codeVerifier,
-          env: process.env.API_ENV as AirwallexEnv,
+          env: process.env.API_ENV as 'prod',
           clientId: process.env.CLIENT_ID as string,
+          elements: [ELEMENT_TYPE],
         });
 
         // create onboarding element
-        element = createElement(ELEMENT_TYPE, {
+        element = await createElement(ELEMENT_TYPE, {
           hideHeader: true,
           hideNav: true,
         });

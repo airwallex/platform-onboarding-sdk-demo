@@ -42,18 +42,24 @@ export const createBusinessAccount = async (configs: Record<string, any>) => {
 
 export const authorizeConnectedAccount = async (accountId: string, codeChallenge: Record<string, any>, configs: Record<string, any>) => {
   return clientApi.post(
-    `/accounts/${accountId}/authorize`,
+    '/authentication/authorize',
     {
       scope: ['w:awx_action:onboarding'],
       code_challenge: codeChallenge,
     },
-    configs,
+    {
+      ...configs,
+      headers: {
+        ...configs.headers,
+        'x-on-behalf-of': accountId
+      }
+    },
   );
 };
 
 export const authorize = async (codeChallenge: string, configs: Record<string, any>) => {
   return clientApi.post(
-    '/account/authorize',
+    '/authentication/authorize',
     {
       scope: ['w:awx_action:onboarding'],
       code_challenge: codeChallenge,

@@ -26,6 +26,7 @@ const Onboarding: React.FC = () => {
   const handleError: Handler = (event) => {
     setToastMessage(`Oops, something is wrong: ${event?.message}`);
     setToastOpen(true);
+    setLoading(false);
   };
 
   const handleReady: Handler = () => {
@@ -41,7 +42,7 @@ const Onboarding: React.FC = () => {
       // create onboarding element
       element = await createElement('kycRfi', {
         hideHeader: true,
-        hideNav: true,
+        hideNav: false,
       });
 
       // append to DOM

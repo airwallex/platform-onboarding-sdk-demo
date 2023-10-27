@@ -1,10 +1,10 @@
 # Airwallex Components SDK sample code
 
-This project is to demonstrate how [Airwallex Components SDK](https://www.npmjs.com/package/@airwallex/components-sdk) can be integrated with different web frameworks. 
+This project is to demonstrate how [Airwallex Components SDK](https://www.npmjs.com/package/@airwallex/components-sdk?activeTab=readme) can be integrated with different web frameworks. 
 
 - [React](/integrations/client/react)
 
-Also, check out [the KYC element demo site integrated by `@airwallex/components-sdk`](https://static-demo.airwallex.com/widgets/sdk-live/onboarding/demo).
+Also, check out [the demo site for `@airwallex/components-sdk`](https://static-demo.airwallex.com/widgets/sdk-live/onboarding/demo).
 
 ## 1. Update `.env`
 ```env

@@ -23,36 +23,29 @@ const Onboarding: React.FC = () => {
     history.push('/success');
   };
 
-  const handleError: Handler = () => {
-    setToastMessage('Oops, something is wrong');
+  const handleError: Handler = (event) => {
+    setToastMessage(`Oops, something is wrong: ${event?.message}`);
     setToastOpen(true);
   };
 
-  const handleReady: Handler = (event) => {
-    if (event.type === 'consent') {
-      setLoading(false);
-    } else {
-      if (event.kycStatus !== 'INIT') {
-        history.push('/success');
-      } else {
-        setToastMessage('Your verification process has started!');
-        setToastOpen(true);
-        setLoading(false);
-      }
-    }
+  const handleReady: Handler = () => {
+    setToastMessage('Your RFI process has started!');
+    setToastOpen(true);
+    setLoading(false);
   };
 
   useEffect(() => {
-    let element: ElementTypes['kyc'] | null;
-    const mountKycElement = async () => {
+    let element: ElementTypes['kycRfi'] | null;
+
+    const mountKycRfiElement = async () => {
       // create onboarding element
-      element = await createElement('kyc', {
+      element = await createElement('kycRfi', {
         hideHeader: true,
         hideNav: true,
       });
 
       // append to DOM
-      await element?.mount('onboarding');
+      await element?.mount('kyc-rfi');
 
       // subscribe element events
       element?.on('ready', (event: any) => {
@@ -68,18 +61,19 @@ const Onboarding: React.FC = () => {
         handleError(event);
       });
     };
-    mountKycElement();
+
+    mountKycRfiElement();
 
     return () => element?.destroy();
   }, []);
 
   return (
     <>
-      <div style={{ height: '100vh', display: loading ? 'none' : 'block' }} id="onboarding" />
+      <div style={{ height: '100vh', display: loading ? 'none' : 'block' }} id="kyc-rfi" />
       {loading && (
         <Stack spacing={2}>
           <Typography variant="h4" sx={{ textAlign: 'center' }}>
-            KYC flow is loading...
+            KYC RFI is loading...
           </Typography>
           <LinearProgress color="primary" />
         </Stack>

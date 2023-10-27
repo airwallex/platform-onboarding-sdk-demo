@@ -44,7 +44,11 @@ export const authorizeConnectedAccount = async (accountId: string, codeChallenge
   return clientApi.post(
     `/accounts/${accountId}/authorize`,
     {
-      scope: ['w:awx_action:onboarding'],
+      scope: [
+        'w:awx_action:onboarding',
+        'r:awx_action:rfi_view',
+        'w:awx_action:rfi_edit',
+      ],
       code_challenge: codeChallenge,
     },
     configs,

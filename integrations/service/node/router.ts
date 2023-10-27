@@ -22,7 +22,7 @@ router.post('/getAuthCode', async (req, res, next) => {
         'Content-Type': 'application/json',
       },
     };
-    const accountId= await createBusinessAccount(configs);
+    const accountId = await createBusinessAccount(configs);
     const { data: authResponse } = await authorizeConnectedAccount(accountId, codeChallenge, configs);
     res.send(authResponse.authorization_code);
   } catch (e) {

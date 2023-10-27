@@ -1,4 +1,4 @@
-# Airwallex Platform Onboarding SDK Demo
+# Airwallex Components SDK sample code
 
 This project is to demonstrate how [Airwallex Components SDK](https://www.npmjs.com/package/@airwallex/components-sdk?activeTab=readme) can be integrated with different web frameworks. 
 

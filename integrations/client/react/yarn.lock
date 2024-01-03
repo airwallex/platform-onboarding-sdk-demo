@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@airwallex/components-sdk@^1.2.25":
-  version "1.2.25"
-  resolved "https://registry.yarnpkg.com/@airwallex/components-sdk/-/components-sdk-1.2.25.tgz#ce15a600c0bfa1b7a59f123113c0452047998274"
-  integrity sha512-f2r3WXhHStI8uXxCcdv5Rok9UYFDJcrBWAtn4WcCybIL4+GuCBBCHBX07G6rwqXN+Qtf+00M5z+yYZesPVTJwQ==
+"@airwallex/components-sdk@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@airwallex/components-sdk/-/components-sdk-1.4.0.tgz#b35ad6079ad814e07c511c791ad7fd73d4979cc3"
+  integrity sha512-ZWAjM/ytnsw4nyBqAYBvaTMKb3W7J5E6MrfqyEPUr8KwZkE8o2O7D4V5U9inh1iVUWDY/nMdDShEw0FXfgql2g==
 
 "@ampproject/remapping@^2.1.0":
   version "2.2.0"

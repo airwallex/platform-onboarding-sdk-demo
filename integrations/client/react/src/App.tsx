@@ -29,7 +29,6 @@ const App: React.FC = () => {
           codeVerifier,
           env: process.env.API_ENV as 'prod',
           clientId: process.env.CLIENT_ID as string,
-          elements: ['kyc', 'kycRfi'],
         });
         setInitialized(true);
       } catch (e) {

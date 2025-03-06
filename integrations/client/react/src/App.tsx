@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import Onboarding from './pages/Onboarding';
-import OnboardingRFI from './pages/OnboardingRFI';
+import { KycRfi, TransactionRfi, PaymentEnablementRfi } from './pages/RFI';
+import PaymentsKyb from './pages/PaymentsKyb';
 import OnboardingSuccess from './pages/OnboardingSuccess';
 import { generateCodeVerifier, generateCodeChallengeFromVerifier } from './utils';
 import { init } from '@airwallex/components-sdk';
@@ -29,6 +30,7 @@ const App: React.FC = () => {
           codeVerifier,
           env: process.env.API_ENV as 'prod',
           clientId: process.env.CLIENT_ID as string,
+          enabledElements: ['kyc', 'kycRfi', 'transactionRfi', 'paymentEnablementRfi', 'paymentsKyb'],
         });
         setInitialized(true);
       } catch (e) {
@@ -68,10 +70,22 @@ const App: React.FC = () => {
           <li>
             <Link to="/kycRfi">KYC RFI Demo</Link>
           </li>
+          <li>
+            <Link to="/transactionRfi">Transaction RFI Demo</Link>
+          </li>
+          <li>
+            <Link to="/paymentEnablementRfi">Payment Enablement RFI Demo</Link>
+          </li>
+          <li>
+            <Link to="/paymentsKyb">Payments KYB Demo</Link>
+          </li>
         </ul>
         <Route exact={true} path="/success" component={OnboardingSuccess} />
         <Route exact={true} path="/kyc" component={Onboarding} />
-        <Route exact={true} path="/kycRfi" component={OnboardingRFI} />
+        <Route exact={true} path="/kycRfi" component={KycRfi} />
+        <Route exact={true} path="/transactionRfi" component={TransactionRfi} />
+        <Route exact={true} path="/paymentEnablementRfi" component={PaymentEnablementRfi} />
+        <Route exact={true} path="/paymentsKyb" component={PaymentsKyb} />
       </Route>
     </Switch>
   );

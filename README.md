@@ -4,17 +4,22 @@ This project is to demonstrate how [Airwallex Components SDK](https://www.npmjs.
 
 - [React](/integrations/client/react)
 
-Also, check out [the demo site for `@airwallex/components-sdk`](https://static-demo.airwallex.com/widgets/sdk-live/onboarding/demo).
+Also check out the demo sites:
+[kyc](https://static-demo.airwallex.com/widgets/sdk-live/onboarding/demo), [kycRfi](https://static-demo.airwallex.com/widgets/sdk-live/kycRfi/demo), [transactionRfi](https://static-demo.airwallex.com/widgets/sdk-live/transactionRfi/demo), [paymentsKyb](https://static-demo.airwallex.com/widgets/sdk-live/kyb/demo)
 
 ## 1. Update `.env`
 ```env
 API_ENV=staging | demo | prod
 CLIENT_ID=your_client_id
 CLIENT_API_KEY=your_api_key
+CONNECTED_ACCOUNT_ID=your_connected_account_id
 ```
-
+CONNECTED_ACCOUNT_ID is optional for kyc but required for other types of element.
 
 ## 2. Start Service
+Update the scopes you need in [ClientApi.ts](/integrations/service/node/service/clientApi.ts#L59) based on the element you want to use.
+
+
 In `integrations/service/node`, run
 
 ```bash

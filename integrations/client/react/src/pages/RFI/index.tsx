@@ -9,7 +9,7 @@ import { useNotification } from '../../utils/useNotification';
 
 type Handler = (event?: any) => void;
 
-const Onboarding: React.FC = () => {
+const Rfi: React.FC<{ rfiType: 'kycRfi' | 'transactionRfi' | 'paymentEnablementRfi' }> = ({ rfiType }) => {
   const history = useHistory();
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -36,17 +36,17 @@ const Onboarding: React.FC = () => {
   };
 
   useEffect(() => {
-    let element: ElementTypes['kycRfi'] | null;
+    let element: ElementTypes[typeof rfiType] | null;
 
-    const mountKycRfiElement = async () => {
+    const mountRfiElement = async () => {
       // create onboarding element
-      element = await createElement('kycRfi', {
+      element = await createElement(rfiType, {
         hideHeader: true,
         hideNav: false,
       });
 
       // append to DOM
-      await element?.mount('kyc-rfi');
+      await element?.mount('rfi');
 
       // subscribe element events
       element?.on('ready', (event: any) => {
@@ -63,18 +63,18 @@ const Onboarding: React.FC = () => {
       });
     };
 
-    mountKycRfiElement();
+    mountRfiElement();
 
     return () => element?.destroy();
   }, []);
 
   return (
     <>
-      <div style={{ height: '100vh', display: loading ? 'none' : 'block' }} id="kyc-rfi" />
+      <div style={{ height: '100vh', display: loading ? 'none' : 'block' }} id="rfi" />
       {loading && (
         <Stack spacing={2}>
           <Typography variant="h4" sx={{ textAlign: 'center' }}>
-            KYC RFI is loading...
+            RFI is loading...
           </Typography>
           <LinearProgress color="primary" />
         </Stack>
@@ -84,4 +84,8 @@ const Onboarding: React.FC = () => {
   );
 };
 
-export default Onboarding;
+const KycRfi: React.FC = () => <Rfi rfiType="kycRfi" />;
+const TransactionRfi: React.FC = () => <Rfi rfiType="transactionRfi" />;
+const PaymentEnablementRfi: React.FC = () => <Rfi rfiType="paymentEnablementRfi" />;
+
+export { KycRfi, TransactionRfi, PaymentEnablementRfi };

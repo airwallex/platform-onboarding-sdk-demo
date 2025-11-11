@@ -45,19 +45,17 @@ const PaymentsKyb: React.FC = () => {
     if (event.type === 'consent') {
       setLoading(false);
     } else {
-      if (event.kycStatus !== 'INIT') {
-        history.push('/success');
-      } else {
+      if (event.kybStatus === 'INIT') {
         setToastMessage('Your Payment KYB process has started!');
-        setToastOpen(true);
-        setLoading(false);
       }
+      setToastOpen(true);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     let element: ElementTypes['paymentsKyb'] | null;
-    const mountKycElement = async () => {
+    const mountKybElement = async () => {
       // create onboarding element
       element = await createElement('paymentsKyb', {
         hideHeader: true,
@@ -75,7 +73,7 @@ const PaymentsKyb: React.FC = () => {
       element?.on('success', handleSuccess);
       element?.on('error', handleError);
     };
-    mountKycElement();
+    mountKybElement();
 
     return () => element?.destroy();
   }, []);

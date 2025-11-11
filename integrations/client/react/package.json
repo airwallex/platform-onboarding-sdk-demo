@@ -36,7 +36,7 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
-    "@airwallex/components-sdk": "^1.27.0",
+    "@airwallex/components-sdk": "^1.27.2",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.0.0",
